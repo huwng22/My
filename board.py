@@ -1,13 +1,13 @@
 from tkinter import *
-from player import *
+from test2 import *
 
 #Board Size
-Size_window_width = 1000
-Size_window_height = 1000
+Size_window_width = 800
+Size_window_height = 800
 Board_Size = 15
 Frame_Gap = 35
-width = 1000
-height = 1000
+width = 800
+height = 800
 
 #Board
 Board_Size = Board_Size - 1
@@ -37,10 +37,12 @@ class Board(Tk,Canvas,Label):
 
         #self.mainloop()
         #Buttons
-        self.B = Button(self, text = "EXIT", font = "Helvetica 10 bold", command = self.Exit, bg = "gray", fg = "black")
+        self.B = Button(self, text = "EXIT", font = "Helvetica 10 bold", command = self.Exit, bg = "gray", fg = "black",highlightthickness=0)
         self.B.pack()
-        self.B.place(x = width / 2 * 0.5, y = height - Frame_Gap * 1.6 + 15, height = Chess_Radius * 2, width = Chess_Radius * 4)
-
+        self.B.place(x = width / 2 * 0.5, y = height - Frame_Gap * 1.6 + 15, height = Chess_Radius * 4, width = Chess_Radius * 6)
+        self.N = Button(self,text = "NEW", font = "Helvetica 10 bold", command = self.New,fg = "black",highlightthickness=0)
+        self.N.pack()
+        self.N.place(x = width / 2 * 0.5-Chess_Radius * 6, y = height - Frame_Gap * 1.6 + 15, height = Chess_Radius * 4, width = Chess_Radius * 6)
     def Create_board(self):
         self.canvas.create_rectangle(Board_X1 - Frame_Gap, Board_Y1 - Frame_Gap, Board_X1 + Frame_Gap + Board_GapX * Board_Size, Board_Y1 + Frame_Gap + Board_GapY * Board_Size, width = 3)
 
@@ -51,7 +53,7 @@ class Board(Tk,Canvas,Label):
             self.canvas.create_text(Board_X1 - Frame_Gap * 1.7, Board_Y1 + f * Board_GapY, text = f + 1, font = "Helvetica 10 bold", fill = "black")
             self.canvas.create_text(Board_X1 + f * Board_GapX, Board_Y1 - Frame_Gap * 1.7, text = f + 1, font = "Helvetica 10 bold", fill = "black")
     
-    def Create_piece(self,x, y, radius = Chess_Radius, fill = "red", outline = "black", width = 0.5):
+    def Create_piece(self,x, y, radius = Chess_Radius, fill = "white", outline = "black", width = 0.5):
         self.canvas.create_oval(x - radius, y - radius, x + radius, y + radius, fill = fill, outline = outline, width = width)
 
     def Player(self):
@@ -60,4 +62,6 @@ class Board(Tk,Canvas,Label):
         global Winner
         Winner = "Exit"
         self.destroy()
+    def New(delf):
+        pass
         
